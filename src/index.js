@@ -17,20 +17,17 @@ refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 function onSearch(e) {
   e.preventDefault();
-  refs.gallery.innerHTML = '';
+  clearPhotos();
   // gallery.refresh();
 
-  photosApiService.query = e.currentTarget.elements.searchQuery.value;
+  photosApiService.searchQuery =
+    e.currentTarget.elements.searchQuery.value.trim();
   photosApiService.resetPage();
-  photosApiService.fetchPhotos().then(photos => {
-    renderGalleryCards(photos);
-  });
+  photosApiService.fetchPhotos().then(renderGalleryCards);
 }
 
 function onLoadMore() {
-  photosApiService.fetchPhotos().then(photos => {
-    renderGalleryCards(photos);
-  });
+  photosApiService.fetchPhotos().then(renderGalleryCards);
 }
 
 function renderGalleryCards(photos) {
@@ -69,4 +66,7 @@ function renderGalleryCards(photos) {
     .join('');
   refs.gallery.insertAdjacentHTML('beforeend', galleryCardMarkup);
   new SimpleLightbox('.gallery a');
+}
+function clearPhotos() {
+  refs.gallery.innerHTML = '';
 }

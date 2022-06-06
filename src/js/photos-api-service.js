@@ -9,7 +9,7 @@ export default class PhotosApiService {
   }
 
   async fetchPhotos() {
-    console.log(this);
+    // console.log(this);
     const fetchPhotos = await axios(
       `${BASE_URL}?key=${API_KEY}&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`
     );
@@ -19,12 +19,5 @@ export default class PhotosApiService {
 
   resetPage() {
     this.page = 1;
-  }
-  get query() {
-    return this.searchQuery;
-  }
-
-  set query(newQuery) {
-    this.searchQuery = newQuery;
   }
 }
