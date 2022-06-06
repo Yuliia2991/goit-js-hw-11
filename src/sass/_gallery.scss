@@ -71,7 +71,9 @@
     font-size: 10px;
   }
 }
-
+.info-item:not(:last-child) {
+  margin-right: 14px;
+}
 .gallery-photo {
   width: 100%;
   height: 100%;
@@ -80,9 +82,36 @@
 
 .gallery-thumb {
   height: 240px;
-  height: 70%;
+  // height: 70%;
 }
 
+.is-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.load-more-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+button[type='button'] {
+  background-color: rgb(94, 188, 188);
+  cursor: pointer;
+  border: rgba(212, 212, 212, 0.762);
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+button[type='button']:hover {
+  color: aliceblue;
+}
 // .example .background {
 //   height: 240px;
 // ❗️❗️❗️ The path to images from a SASS file
