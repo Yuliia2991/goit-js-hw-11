@@ -18,21 +18,21 @@ refs.loadMoreBtn.addEventListener('click', onLoadMore);
 async function onSearch(e) {
   e.preventDefault();
   clearPhotos();
+  photosApiService.resetPage();
 
   photosApiService.searchQuery =
     e.currentTarget.elements.searchQuery.value.trim();
 
   if (photosApiService.searchQuery === '') {
+    // hideLoadMoreBtn;
     return Notify.failure('Please fill in a search query.');
   }
 
   try {
     const data = await photosApiService.fetchPhotos();
-    const photos = data.hits;
-    photosApiService.resetPage();
 
     if (data.totalHits !== 0) {
-      renderGalleryCards(photos);
+      renderGalleryCards(data.hits);
       Notify.success(`Hooray! We found ${data.totalHits} images.`);
     } else {
       Notify.failure(
